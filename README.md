@@ -11,11 +11,15 @@ After following this guide, Claude will be able to:
 - **Apply text styles** from your DS to any text node
 - **Follow your design patterns** — knowing which component to use, when, and how
 
-## What you need
+## Prerequisites
 
+**This toolkit builds on top of [Vibma](https://github.com/ufira-ai/Vibma) — you need it set up and working before starting.**
+
+Vibma is a Figma MCP plugin that lets AI agents read and write to Figma via the Claude Code CLI. If you haven't set it up yet, follow the [Vibma setup guide](https://github.com/ufira-ai/Vibma) first and confirm that Claude can create a frame in Figma before continuing here.
+
+Once Vibma is working, you'll also need:
 - **Figma** with your design system in a dedicated library file
-- **Vibma** (the Figma MCP plugin) installed and working
-- **Claude Code** (the CLI) with Vibma connected
+- **Claude Code** (the CLI) connected to Vibma
 
 ## The big picture
 
@@ -46,6 +50,8 @@ Claude builds screens using your DS
 ---
 
 ## Step 1: Patch Vibma
+
+> **Requires Vibma already installed.** This step modifies your local Vibma clone — not a separate install.
 
 Vibma out of the box can only work with components in the current file. Your DS
 lives in a separate library file, so Claude needs cross-file import support.
