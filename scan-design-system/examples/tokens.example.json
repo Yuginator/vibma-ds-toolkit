@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "description": "Token registry. key = 40-char hex for cross-file import via variableKey.",
+    "source": "Acme Design System via Vibma scan",
+    "totalTokens": 12,
+    "updatedAt": "2026-01-15"
+  },
+  "tokens": {
+    "color/text/primary/enabled": {
+      "variableId": "VariableID:200:100",
+      "key": "aaa111bbb222ccc333ddd444eee555fff666aaa11"
+    },
+    "color/text/primary/disabled": {
+      "variableId": "VariableID:200:101",
+      "key": "bbb222ccc333ddd444eee555fff666aaa111bbb22"
+    },
+    "color/background/default/enabled": {
+      "variableId": "VariableID:200:200",
+      "key": "ccc333ddd444eee555fff666aaa111bbb222ccc33"
+    },
+    "color/background/brand/enabled": {
+      "variableId": "VariableID:200:201",
+      "key": "ddd444eee555fff666aaa111bbb222ccc333ddd44"
+    },
+    "color/border/default/enabled": {
+      "variableId": "VariableID:200:300",
+      "key": "eee555fff666aaa111bbb222ccc333ddd444eee55"
+    }
+  }
+}

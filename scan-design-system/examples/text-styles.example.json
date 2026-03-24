@@ -1,0 +1,41 @@
+{
+  "_meta": {
+    "description": "Text style registry. key = 40-char hex for cross-file import via textStyleKey.",
+    "source": "Acme Design System via Vibma scan",
+    "totalStyles": 8,
+    "font": "Inter",
+    "updatedAt": "2026-01-15"
+  },
+  "styles": {
+    "Display/48": {
+      "key": "aaa111bbb222ccc333ddd444eee555fff666aaa11",
+      "fontSize": 48,
+      "fontWeight": "Semibold",
+      "lineHeight": 56
+    },
+    "Heading/24/Semibold": {
+      "key": "bbb222ccc333ddd444eee555fff666aaa111bbb22",
+      "fontSize": 24,
+      "fontWeight": "Semibold",
+      "lineHeight": 32
+    },
+    "Body/16/Regular": {
+      "key": "ccc333ddd444eee555fff666aaa111bbb222ccc33",
+      "fontSize": 16,
+      "fontWeight": "Regular",
+      "lineHeight": 24
+    },
+    "Body/14/Medium": {
+      "key": "ddd444eee555fff666aaa111bbb222ccc333ddd44",
+      "fontSize": 14,
+      "fontWeight": "Medium",
+      "lineHeight": 20
+    },
+    "Caption/12/Regular": {
+      "key": "eee555fff666aaa111bbb222ccc333ddd444eee55",
+      "fontSize": 12,
+      "fontWeight": "Regular",
+      "lineHeight": 16
+    }
+  }
+}

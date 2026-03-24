@@ -1,0 +1,64 @@
+{
+  "componentSetId": "100:200",
+  "variantKeys": {
+    "100:201": {
+      "key": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
+      "name": "color=brand, type=filled, size=small, state=enabled"
+    },
+    "100:202": {
+      "key": "d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5",
+      "name": "color=brand, type=filled, size=medium, state=enabled"
+    },
+    "100:203": {
+      "key": "e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6",
+      "name": "color=brand, type=outline, size=small, state=enabled"
+    },
+    "100:204": {
+      "key": "f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1",
+      "name": "color=critical, type=filled, size=small, state=enabled"
+    },
+    "100:205": {
+      "key": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6b2c3",
+      "name": "color=neutral, type=outline, size=small, state=enabled"
+    }
+  },
+  "textNodeIds": {
+    "formula": "I{instanceId};{nodeId}",
+    "note": "Prefer setting text via the buttonLabel component property: instances(update, {id, properties: {'buttonLabel#100:50': 'My label'}}). Fall back to direct text node IDs using the formula.",
+    "byVariant": {
+      "brand/filled/small/enabled": {
+        "variantNodeId": "100:201",
+        "Label": "100:210"
+      }
+    }
+  },
+  "defaultVariant": {
+    "color": "brand",
+    "type": "filled",
+    "size": "small",
+    "state": "enabled"
+  },
+  "description": "Primary action trigger. Use filled+brand for main CTAs, outline+neutral for secondary actions. Default size is small. Set label via the buttonLabel component property.",
+  "variantProperties": {
+    "color": ["brand", "neutral", "critical", "success"],
+    "type": ["filled", "outline", "transparent"],
+    "size": ["small (default)", "medium", "large"],
+    "state": ["enabled", "hover", "active", "loading", "disabled"]
+  },
+  "anatomy": {
+    "Label": "button text (TEXT) — set via buttonLabel component property or direct text node",
+    "Icon_Left": "leading icon (INSTANCE_SWAP), visible when layout includes leading icon",
+    "Icon_Right": "trailing icon (INSTANCE_SWAP), visible when layout includes trailing icon"
+  },
+  "componentProperties": {
+    "buttonLabel#100:50": "TEXT — the button label text; set via instances(update, {properties: {'buttonLabel#100:50': 'My label'}})",
+    "Icon_Left": "INSTANCE_SWAP — swap to any DS icon for leading position",
+    "Icon_Right": "INSTANCE_SWAP — swap to any DS icon for trailing position"
+  },
+  "whenToUse": "Use for interactive actions (submit, cancel, save, proceed). color=brand for default actions; color=critical for destructive actions; color=neutral for de-emphasised actions. type=filled for primary CTAs; type=outline for secondary; type=transparent for tertiary.",
+  "notes": [
+    "color=neutral has no filled variant — only outline and transparent",
+    "Default size is small, not medium",
+    "icon properties are only visible when the corresponding layout variant is active"
+  ]
+}

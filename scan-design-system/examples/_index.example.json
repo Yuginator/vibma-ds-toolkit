@@ -1,0 +1,32 @@
+{
+  "designSystem": "Acme Design System",
+  "figmaFileKey": "your-figma-file-key-here",
+  "lastUpdated": "2026-01-15",
+  "note": "Read _index.json to find the right component, then read its file for full details.",
+  "components": {
+    "Button": {
+      "componentSetId": "100:200",
+      "key": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
+      "file": "Button.json",
+      "description": "Primary action trigger. Use filled+brand for main CTAs, outline+neutral for secondary actions. Default size is small.",
+      "variantCount": 120,
+      "variantProperties": ["color", "type", "size", "state"]
+    },
+    "Input": {
+      "componentSetId": "100:300",
+      "key": "b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3",
+      "file": "Input.json",
+      "description": "Free-text input for name, email, password, number fields. Default state is enabled; switches to filled when user enters data.",
+      "variantCount": 24,
+      "variantProperties": ["size", "state", "hasLabel"]
+    },
+    "Badge": {
+      "componentSetId": "100:400",
+      "key": "c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4",
+      "file": "Badge.json",
+      "description": "Compact status or category label. Use color=critical for errors, success for positive states, neutral for default.",
+      "variantCount": 48,
+      "variantProperties": ["color", "size", "style"]
+    }
+  }
+}
