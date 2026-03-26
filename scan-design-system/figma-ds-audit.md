@@ -1,7 +1,7 @@
 ---
 name: figma-ds-audit
 description: Audit your Figma design system for AI readiness. Enumerates components, color tokens, typography, spacing tokens, and other styles via Figma Plugin API — fixes descriptions interactively and optionally generates a local registry for cheaper, more accurate AI-driven design.
-allowed-tools: Read, Write, Bash, use_figma
+allowed-tools: Read, Write, Bash
 ---
 
 # Figma Design System AI Readiness Audit
@@ -10,9 +10,11 @@ Systematically checks your design system and fixes what prevents AI agents from 
 
 ## How this works
 
-Uses the Figma Plugin API via `use_figma` to enumerate all assets directly — no guessing search terms, no cross-library noise. Everything is read from the file you're currently connected to.
+All data is read and written via the **Figma Plugin API**, invoked through the `use_figma` skill. Claude writes JavaScript code and passes it as a string to `use_figma` — Figma executes it in the plugin context and returns whatever the `return` statement produces. Write operations (setting descriptions) don't need a `return`.
 
-**Connection:** Make sure you're connected to your DS source file (not a consumer file) before starting.
+This gives full, direct access to the file's contents — no guessing search terms, no cross-library noise. Everything is scoped to the DS file you're currently connected to.
+
+> **Before starting:** Make sure you're connected to your DS source file (not a consumer file). Invoke `use_figma` for all Plugin API calls below.
 
 ---
 
@@ -29,9 +31,9 @@ Uses the Figma Plugin API via `use_figma` to enumerate all assets directly — n
 ## Phase 1: Audit & Fix
 
 Work through each section in order. Each section follows the same pattern:
-1. **Enumerate** — pull all assets via Plugin API
+1. **Enumerate** — pass the JS snippet to `use_figma`; it runs in the Figma plugin context and returns the data
 2. **Flag** — identify issues by severity
-3. **Fix loop** — Claude drafts a fix, you approve or correct, Claude writes it back
+3. **Fix loop** — Claude drafts a fix, you approve or correct, Claude passes a write snippet to `use_figma`
 
 You can stop after any section if you're satisfied with coverage.
 
@@ -369,6 +371,7 @@ Read `examples/Button.example.json` for the exact format.
 
 ### Generating variant keys
 
+Pass to `use_figma`:
 ```javascript
 const set = figma.getNodeById('[componentSetId]')
 return set.children.map(v => ({
