@@ -1,12 +1,14 @@
 # Figma Design System AI Readiness Audit
 
-A Claude skill that audits your Figma design system and tells you exactly what to fix so AI agents can use it effectively.
+A Claude skill that audits your Figma design system and tells you exactly what to fix so AI agents can use it effectively — then optionally generates a local component registry that dramatically reduces token usage and eliminates lookup ambiguity.
 
 ## The problem
 
 Figma's native MCP lets Claude query your design system in real time. But raw Figma data — component names, variant lists, style names — doesn't tell Claude *when* to use a component, *which* color token for a CTA, or *what* text style for a section header. That's design intent, and it lives in descriptions that most DS files don't have.
 
-This skill finds the gaps and helps you fill them.
+On top of that, live queries search across all enabled libraries — Claude has to guess which result is yours, burn multiple searches to find the right component, and still lacks decision guidance.
+
+This skill fixes both problems.
 
 ## What it does
 
@@ -20,7 +22,21 @@ This skill finds the gaps and helps you fill them.
 
 For each issue, Claude drafts a fix and asks for your approval before writing anything back to Figma. You know your DS — Claude just does the legwork.
 
-**Phase 2: Local Registry (optional)** — generates compact JSON files for cheaper, more accurate AI-driven design work. See [trade-offs](#registry-trade-offs) below.
+**Phase 2: Local Registry (optional but recommended)** — generates compact JSON files scoped to your DS. Tested to significantly reduce token usage, number of MCP calls, and lookup ambiguity compared to live queries.
+
+## Why the registry matters
+
+| | Live Figma queries | Local registry |
+|---|---|---|
+| **Token cost** | High — `search_design_system` returns 250+ tokens per result, Claude needs multiple searches per component | Low — `_index.json` is 50-100 tokens per component, component file is 500-1000 tokens with full guidance |
+| **Accuracy** | Lower — search spans all enabled libraries, Claude must disambiguate | High — registry is scoped to your DS only, no ambiguity |
+| **Decision guidance** | None — just names and keys | Included — `whenToUse`, default variants, variant properties |
+| **Call count** | Multiple searches + follow-up calls per component | One file read per component |
+| **Maintenance** | None | Manual — regenerate when DS changes significantly |
+
+A single design screen can burn 10,000–20,000 tokens on component lookups alone with live queries. With a local registry, the same screen uses a fraction of that — and Claude picks the right component on the first try.
+
+**Recommendation:** Always generate the component registry. For tokens and text styles, live queries are usually sufficient after a good audit — descriptions are already in Figma and you just need a name and key.
 
 ## Prerequisites
 
@@ -30,30 +46,15 @@ For each issue, Claude drafts a fix and asks for your approval before writing an
 
 ## Usage
 
+Copy `figma-ds-audit/figma-ds-audit.md` to `.claude/commands/` in your project, then:
+
 ```
 /figma-ds-audit
 ```
-
-or:
-
-```
-You: "Run the design system audit"
-```
-
-## Registry trade-offs
-
-| | Live Figma queries | Local registry |
-|---|---|---|
-| **Token cost** | High — search returns 250+ tokens per result, multiple searches needed | Low — index is 50-100 tokens per component |
-| **Accuracy** | Lower — search spans all enabled libraries | High — scoped to your DS only |
-| **Decision guidance** | None — just names and keys | Included — `whenToUse`, defaults, variant properties |
-| **Maintenance** | None | Manual — regenerate when DS changes |
-
-**Recommendation:** Generate a component registry. For tokens and text styles, live queries are usually sufficient after a good audit — descriptions are already in Figma.
 
 ## Files
 
 | File | What it is |
 |---|---|
-| `scan-design-system/figma-ds-audit.md` | The Claude skill — copy to `.claude/commands/` in your project |
-| `scan-design-system/examples/` | Example registry JSON files showing output format |
+| `figma-ds-audit/figma-ds-audit.md` | The Claude skill |
+| `figma-ds-audit/examples/` | Example registry JSON files showing output format |
