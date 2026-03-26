@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Text style registry. key = 40-char hex for cross-file import via textStyleKey.",
-    "source": "Acme Design System via Vibma scan",
+    "source": "Acme Design System via Figma DS audit",
     "totalStyles": 8,
     "font": "Inter",
     "updatedAt": "2026-01-15"

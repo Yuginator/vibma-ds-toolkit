@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Token registry. key = 40-char hex for cross-file import via variableKey.",
-    "source": "Acme Design System via Vibma scan",
+    "source": "Acme Design System via Figma DS audit",
     "totalTokens": 12,
     "updatedAt": "2026-01-15"
   },
